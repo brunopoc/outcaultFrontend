@@ -2,40 +2,77 @@ import React from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 
-const MainHeader = styled.header`
+import { Container, Row } from '../styles/Grid';
+
+const Footer = styled.footer`
     width: 100%;
-    height: 200px;
-    border-bottom: 1px solid ${props => props.theme.colors.primary};
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aeaeae;
 `;
 
-const Container = styled.div`
-    max-width: 1080px;
-    width: 100%;
-    height: 100%;
-    margin: auto;
+const LoginCard = styled.div`
+    width: 400px;
+    height: 500px;
+    margin: 180px auto;
+    border: 1px solid #7d7d7d;
+    border-radius: 15px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-self: center;
     align-items: center;
+`;
+
+const FormArea = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const LabelArea = styled.label`
+    text-align: center;
+`;
+
+const InputBar = styled.input`
+    background-color: #4b4b4b;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    font-size: 14px;
+    margin-top: 10px;
+    &:focus {
+        outline: none;
+    }
 `;
 
 export default function Home(): JSX.Element {
     return (
-        <div>
+        <>
             <Head>
                 <title>WebComics</title>
             </Head>
 
-            <MainHeader>
-                <Container>
-                    <div>Logo</div>
-                    <div>Menu</div>
-                </Container>
-            </MainHeader>
+            <main>
+                <LoginCard>
+                    <form action="">
+                        <FormArea>
+                            <LabelArea htmlFor="email-box">
+                                Digite seu email para continuar
+                            </LabelArea>
+                            <InputBar type="text" id="email-box" />
+                        </FormArea>
+                    </form>
+                </LoginCard>
+            </main>
 
-            <main>Content</main>
-
-            <footer>Footer</footer>
-        </div>
+            <Container>
+                <Row>
+                    <Footer>Web Comics - Alpha Version</Footer>
+                </Row>
+            </Container>
+        </>
     );
 }
