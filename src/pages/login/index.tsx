@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { ActionsList } from '../../store/ducks/user';
+import { onlyNotAuth } from '../../utils/auth';
 
 import { Container, Row } from '../../styles/Grid';
+import { ApplicationState } from '../../store';
 
 const Footer = styled.footer`
     width: 100%;
@@ -50,24 +54,22 @@ const InputBar = styled.input`
     }
 `;
 
-export default function Home(): JSX.Element {
-    const [email, setEmail] = useState('');
+export default function Login(): JSX.Element {
+    onlyNotAuth();
+    const globalEmail = useSelector(
+        (state: ApplicationState) => state.user.info.email
+    );
+
+    const [emailField, setEmailField] = useState(globalEmail);
     const [password, setPassword] = useState('');
+
+    const dispatch = useDispatch();
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(email, password);
-        const resp = await fetch(`http://localhost:4000/api/v1/user/singin`, {
-            method: 'post',
-            body: JSON.stringify({ email, password }, null, 2),
-            headers: new Headers({
-                'content-type': 'application/json',
-            }),
-        });
-        const data = await resp.json();
-        console.log(data);
-        return '';
+        dispatch(ActionsList.loginRequest({ email: emailField, password }));
     }
+
     return (
         <>
             <Head>
@@ -82,7 +84,8 @@ export default function Home(): JSX.Element {
                             <InputBar
                                 type="text"
                                 id="email-box"
-                                onChange={e => setEmail(e.target.value)}
+                                value={emailField}
+                                onChange={e => setEmailField(e.target.value)}
                             />
                             <LabelArea htmlFor="password-box">Senha:</LabelArea>
                             <InputBar
@@ -90,7 +93,7 @@ export default function Home(): JSX.Element {
                                 id="password-box"
                                 onChange={e => setPassword(e.target.value)}
                             />
-                            <button>entrar</button>
+                            <button type="submit">entrar</button>
                         </FormArea>
                     </form>
                 </LoginCard>

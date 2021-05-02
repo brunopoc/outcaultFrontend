@@ -1,6 +1,10 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Head from 'next/head';
 import styled from 'styled-components';
+import Router from 'next/router';
+import { ActionsList } from '../store/ducks/user';
+import { ApplicationState } from '../store';
 
 import { Container, Row } from '../styles/Grid';
 
@@ -27,6 +31,7 @@ const LoginCard = styled.div`
 
 const FormArea = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
@@ -42,13 +47,33 @@ const InputBar = styled.input`
     padding: 5px;
     border: none;
     font-size: 14px;
-    margin-top: 10px;
+    margin: 10px 0px;
     &:focus {
         outline: none;
     }
 `;
 
 export default function Home(): JSX.Element {
+    const dispatch = useDispatch();
+    const emailCheck = useSelector(
+        (state: ApplicationState) => state.user.session.emailStatus
+    );
+
+    useEffect(() => {
+        if (emailCheck === 'alreadyin') {
+            Router.push('/login');
+        }
+        if (emailCheck === 'notIn') {
+            Router.push('/cadastro');
+        }
+    }, [emailCheck]);
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const email = e.target[0].value;
+        dispatch(ActionsList.emailCheckRequest({ email }));
+    }
+
     return (
         <>
             <Head>
@@ -57,12 +82,13 @@ export default function Home(): JSX.Element {
 
             <main>
                 <LoginCard>
-                    <form action="">
+                    <form onSubmit={handleSubmit}>
                         <FormArea>
                             <LabelArea htmlFor="email-box">
                                 Digite seu email para continuar
                             </LabelArea>
                             <InputBar type="text" id="email-box" />
+                            <button type="submit">Enviar</button>
                         </FormArea>
                     </form>
                 </LoginCard>
