@@ -65,7 +65,7 @@ export default function Login(): JSX.Element {
 
     const dispatch = useDispatch();
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
         dispatch(ActionsList.loginRequest({ email: emailField, password }));
     }

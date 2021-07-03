@@ -1,6 +1,6 @@
 import { put } from 'redux-saga/effects';
 import fetch from 'isomorphic-fetch';
-import { Console } from 'node:console';
+import Router from 'next/router';
 import { ActionsList as UserActionList } from '.';
 
 export function* sendLogin(data) {
@@ -33,8 +33,10 @@ export function* emailCheckRequest(data) {
     );
 
     if (resp.status === 200) {
-        yield put(UserActionList.emailCheckSuccess());
+        // yield put(UserActionList.emailCheckSuccess());
+        Router.push('/login');
     } else if (resp.status === 406) {
-        yield put(UserActionList.emailCheckFailed());
+        // yield put(UserActionList.emailCheckFailed());
+        Router.push('/cadastro');
     }
 }

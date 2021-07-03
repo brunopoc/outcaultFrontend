@@ -36,17 +36,9 @@ export interface UserState {
 }
 
 export const ActionsList = {
-    emailCheckRequest: ({ email }): any => ({
+    emailCheckRequest: (email): any => ({
         type: actionUserTypes.EMAIL_CHECK_REQUEST,
-        payload: { email },
-    }),
-    emailCheckSuccess: (): any => ({
-        type: actionUserTypes.EMAIL_CHECK_SUCCESS,
-        payload: {},
-    }),
-    emailCheckFailed: (): any => ({
-        type: actionUserTypes.EMAIL_CHECK_FAILED,
-        payload: {},
+        payload: email,
     }),
     loginRequest: ({ email, password }): any => ({
         type: actionUserTypes.LOGIN_REQUEST,
@@ -75,22 +67,6 @@ const reducer: Reducer<UserState> = (state = INITIAL_STATE, reduceAction) => {
                 info: {
                     ...state.info,
                     email: reduceAction.payload.email,
-                },
-            };
-        case actionUserTypes.EMAIL_CHECK_SUCCESS:
-            return {
-                ...state,
-                session: {
-                    ...state.session,
-                    emailStatus: 'alreadyin',
-                },
-            };
-        case actionUserTypes.EMAIL_CHECK_FAILED:
-            return {
-                ...state,
-                session: {
-                    ...state.session,
-                    emailStatus: 'notIn',
                 },
             };
         case actionUserTypes.LOGIN_SUCCESS:

@@ -43,7 +43,7 @@ const SearchBar = styled.input`
     }
 `;
 
-const UserButton = styled.div`
+const UserButton = styled.button`
     border-radius: 100%;
     background-color: #764eac;
     border: 1px solid white;
@@ -64,7 +64,7 @@ const HeaderComponent = (): JSX.Element => (
         <Container>
             <Row>
                 <Column mobile="12" tablet="12" desktop="2">
-                    <div>Comic Book</div>
+                    <img src="/img/logo.png" alt="Logo da ComicsBook" />
                 </Column>
                 <Column mobile="12" tablet="12" desktop="10">
                     <ActionArea>
