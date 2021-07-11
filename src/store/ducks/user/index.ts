@@ -51,6 +51,14 @@ export const ActionsList = {
         type: actionUserTypes.LOGIN_SUCCESS,
         payload: { data },
     }),
+    registerRequest: (data): any => ({
+        type: actionUserTypes.REGISTER_REQUEST,
+        payload: { data },
+    }),
+    registerSuccess: (data): any => ({
+        type: actionUserTypes.REGISTER_SUCCESS,
+        payload: { data },
+    }),
 };
 
 const INITIAL_STATE: UserState = {

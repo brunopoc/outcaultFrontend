@@ -39,3 +39,21 @@ export function* emailCheckRequest(data) {
         Router.push('/cadastro');
     }
 }
+
+export function* registerRequest(data) {
+    const { email, password, name, nickname } = data.payload;
+
+    const resp = yield fetch(`http://localhost:4000/api/v1/user/singup`, {
+        method: 'post',
+        body: JSON.stringify({ email, password, name, nickname }, null, 2),
+        headers: new Headers({
+            'content-type': 'application/json',
+        }),
+    });
+
+    if (resp.status === 200) {
+        Router.push('/login');
+    } else if (resp.status === 406) {
+        Router.push('/cadastro');
+    }
+}

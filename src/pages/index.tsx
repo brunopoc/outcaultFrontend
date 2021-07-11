@@ -5,30 +5,15 @@ import styled from 'styled-components';
 import Router from 'next/router';
 import { ActionsList } from '../store/ducks/user';
 import { ApplicationState } from '../store';
-import { PublicHeaderComponent, DefaultButtonComponent } from '../components';
 
+import {
+    PublicHeaderComponent,
+    DefaultButtonComponent,
+    InputComponent,
+    CardComponent,
+    FooterComponent,
+} from '../components';
 import { Container, Row } from '../styles/Grid';
-
-const Footer = styled.footer`
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #aeaeae;
-`;
-
-const LoginCard = styled.div`
-    width: 400px;
-    height: 500px;
-    margin: 180px auto;
-    border: 1px solid #7d7d7d;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    align-items: center;
-`;
 
 const FormArea = styled.div`
     display: flex;
@@ -39,20 +24,6 @@ const FormArea = styled.div`
 
 const LabelArea = styled.label`
     text-align: center;
-`;
-
-const InputBar = styled.input`
-    background-color: #5a5a5a;
-    border-radius: 10px;
-    color: #fff;
-    padding: 5px;
-    border: none;
-    font-size: 14px;
-    padding: 15px 30px;
-    margin: 10px 0px;
-    &:focus {
-        outline: none;
-    }
 `;
 
 export default function Home(): JSX.Element {
@@ -85,24 +56,26 @@ export default function Home(): JSX.Element {
             <PublicHeaderComponent />
 
             <main>
-                <LoginCard>
+                <CardComponent>
                     <form onSubmit={handleSubmit}>
                         <FormArea>
                             <LabelArea htmlFor="email-box">
                                 Digite seu email para continuar
                             </LabelArea>
-                            <InputBar type="text" id="email-box" />
+                            <InputComponent type="text" id="email-box" />
                             <DefaultButtonComponent type="submit">
                                 Participe Agora
                             </DefaultButtonComponent>
                         </FormArea>
                     </form>
-                </LoginCard>
+                </CardComponent>
             </main>
 
             <Container>
                 <Row>
-                    <Footer>Web Comics - Alpha Version</Footer>
+                    <FooterComponent>
+                        Web Comics - Alpha Version
+                    </FooterComponent>
                 </Row>
             </Container>
         </>
