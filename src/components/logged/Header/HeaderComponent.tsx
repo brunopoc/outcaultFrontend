@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, Row, Column } from '../../styles/Grid';
+import { Container, Row, Column } from '../../../styles/Grid';
 
 const MainHeader = styled.header`
     width: 100%;

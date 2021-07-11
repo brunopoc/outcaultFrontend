@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
-import { HeaderComponent } from '../../components';
+import { LoggedHeaderComponent } from '../../components';
 import { ActionsList } from '../../store/ducks/user';
 
 export default function Home(): JSX.Element {
@@ -19,7 +19,7 @@ export default function Home(): JSX.Element {
                 <title>WebComics</title>
             </Head>
 
-            <HeaderComponent />
+            <LoggedHeaderComponent />
 
             <main>
                 <h3>As melhores histórias em um só lugar</h3>

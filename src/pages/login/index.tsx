@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActionsList } from '../../store/ducks/user';
-import { onlyNotAuth } from '../../utils/auth';
 
-import { Container, Row } from '../../styles/Grid';
+import { ActionsList } from '../../store/ducks/user';
 import { ApplicationState } from '../../store';
+import { onlyNotAuth } from '../../utils/auth';
+import { Container, Row } from '../../styles/Grid';
+import { CardComponent, DefaultButtonComponent } from '../../components';
 
 const Footer = styled.footer`
     width: 100%;
@@ -15,18 +16,6 @@ const Footer = styled.footer`
     justify-content: center;
     align-items: center;
     color: #aeaeae;
-`;
-
-const LoginCard = styled.div`
-    width: 400px;
-    height: 500px;
-    margin: 180px auto;
-    border: 1px solid #7d7d7d;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    align-items: center;
 `;
 
 const FormArea = styled.div`
@@ -77,7 +66,7 @@ export default function Login(): JSX.Element {
             </Head>
 
             <main>
-                <LoginCard>
+                <CardComponent>
                     <form onSubmit={handleSubmit}>
                         <FormArea>
                             <LabelArea htmlFor="email-box">Email:</LabelArea>
@@ -93,10 +82,12 @@ export default function Login(): JSX.Element {
                                 id="password-box"
                                 onChange={e => setPassword(e.target.value)}
                             />
-                            <button type="submit">entrar</button>
+                            <DefaultButtonComponent type="submit">
+                                entrar
+                            </DefaultButtonComponent>
                         </FormArea>
                     </form>
-                </LoginCard>
+                </CardComponent>
             </main>
 
             <Container>

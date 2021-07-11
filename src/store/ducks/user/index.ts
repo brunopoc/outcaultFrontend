@@ -3,7 +3,6 @@ import { Reducer } from 'redux';
 export enum actionUserTypes {
     EMAIL_CHECK_REQUEST = '@user/EMAIL_CHECK_REQUEST',
     EMAIL_CHECK_SUCCESS = '@user/EMAIL_CHECK_SUCCESS',
-    EMAIL_CHECK_FAILED = '@user/EMAIL_CHECK_FAILED',
 
     LOGIN_REQUEST = '@user/login/LOGIN_REQUEST',
     LOGIN_SUCCESS = '@user/login/LOGIN_SUCCESS',
@@ -40,6 +39,10 @@ export const ActionsList = {
         type: actionUserTypes.EMAIL_CHECK_REQUEST,
         payload: email,
     }),
+    emailCheckSuccess: (email): any => ({
+        type: actionUserTypes.EMAIL_CHECK_SUCCESS,
+        payload: email,
+    }),
     loginRequest: ({ email, password }): any => ({
         type: actionUserTypes.LOGIN_REQUEST,
         payload: { email, password },
@@ -61,7 +64,7 @@ const INITIAL_STATE: UserState = {
 
 const reducer: Reducer<UserState> = (state = INITIAL_STATE, reduceAction) => {
     switch (reduceAction.type) {
-        case actionUserTypes.EMAIL_CHECK_REQUEST:
+        case actionUserTypes.EMAIL_CHECK_SUCCESS:
             return {
                 ...state,
                 info: {

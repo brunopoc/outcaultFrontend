@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Router from 'next/router';
 import { ActionsList } from '../store/ducks/user';
 import { ApplicationState } from '../store';
+import { PublicHeaderComponent, DefaultButtonComponent } from '../components';
 
 import { Container, Row } from '../styles/Grid';
 
@@ -41,12 +42,13 @@ const LabelArea = styled.label`
 `;
 
 const InputBar = styled.input`
-    background-color: #4b4b4b;
+    background-color: #5a5a5a;
     border-radius: 10px;
     color: #fff;
     padding: 5px;
     border: none;
     font-size: 14px;
+    padding: 15px 30px;
     margin: 10px 0px;
     &:focus {
         outline: none;
@@ -80,6 +82,8 @@ export default function Home(): JSX.Element {
                 <title>WebComics</title>
             </Head>
 
+            <PublicHeaderComponent />
+
             <main>
                 <LoginCard>
                     <form onSubmit={handleSubmit}>
@@ -88,7 +92,9 @@ export default function Home(): JSX.Element {
                                 Digite seu email para continuar
                             </LabelArea>
                             <InputBar type="text" id="email-box" />
-                            <button type="submit">Enviar</button>
+                            <DefaultButtonComponent type="submit">
+                                Participe Agora
+                            </DefaultButtonComponent>
                         </FormArea>
                     </form>
                 </LoginCard>

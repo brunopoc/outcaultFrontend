@@ -21,6 +21,7 @@ export function* sendLogin(data) {
 
 export function* emailCheckRequest(data) {
     const { email } = data.payload;
+
     const resp = yield fetch(
         `http://localhost:4000/api/v1/user/email/alreadyin`,
         {
@@ -33,10 +34,8 @@ export function* emailCheckRequest(data) {
     );
 
     if (resp.status === 200) {
-        // yield put(UserActionList.emailCheckSuccess());
         Router.push('/login');
     } else if (resp.status === 406) {
-        // yield put(UserActionList.emailCheckFailed());
         Router.push('/cadastro');
     }
 }
