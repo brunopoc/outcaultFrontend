@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,18 +29,21 @@ const LabelArea = styled.label`
 
 export default function Login(): JSX.Element {
     onlyNotAuth();
-    const globalEmail = useSelector(
-        (state: ApplicationState) => state.user.info.email
-    );
-
-    const [emailField, setEmailField] = useState(globalEmail);
-    const [password, setPassword] = useState('');
+    // const globalEmail = useSelector(
+    //    (state: ApplicationState) => state.user.info.email
+    // );
 
     const dispatch = useDispatch();
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(ActionsList.loginRequest({ email: emailField, password }));
+        const [emailBox, passwordBox] = e.target.elements;
+        dispatch(
+            ActionsList.loginRequest({
+                email: emailBox.value,
+                password: passwordBox.value,
+            })
+        );
     }
 
     return (
@@ -56,15 +59,14 @@ export default function Login(): JSX.Element {
                             <LabelArea htmlFor="email-box">Email:</LabelArea>
                             <InputComponent
                                 type="text"
+                                name="emailBox"
                                 id="email-box"
-                                value={emailField}
-                                onChange={e => setEmailField(e.target.value)}
                             />
                             <LabelArea htmlFor="password-box">Senha:</LabelArea>
                             <InputComponent
                                 type="password"
+                                name="passwordBox"
                                 id="password-box"
-                                onChange={e => setPassword(e.target.value)}
                             />
                             <DefaultButtonComponent type="submit">
                                 entrar

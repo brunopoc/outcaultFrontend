@@ -11,12 +11,15 @@ export enum actionUserTypes {
     REGISTER_REQUEST = '@user/register/REGISTER_REQUEST',
     REGISTER_SUCCESS = '@user/register/REGISTER_SUCCESS',
     REGISTER_FAILED = '@user/register/REGISTER_FAILED',
+
+    REQUEST_PROFILE = '@user/register/REQUEST_PROFILE',
 }
 
 type sessionData = {
     logged: boolean;
     emailStatus?: string;
     token?: string;
+    checked: boolean;
 };
 
 type userInfoData = {
@@ -59,11 +62,16 @@ export const ActionsList = {
         type: actionUserTypes.REGISTER_SUCCESS,
         payload: { data },
     }),
+    profileRequest: (data): any => ({
+        type: actionUserTypes.REQUEST_PROFILE,
+        payload: { data },
+    }),
 };
 
 const INITIAL_STATE: UserState = {
     session: {
         logged: false,
+        checked: false,
     },
     info: {
         email: '',

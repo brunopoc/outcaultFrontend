@@ -16,13 +16,28 @@ const InputBar = styled.input`
 
 type Props = {
     type?: string | undefined;
+    name: string | undefined;
     id?: string | undefined;
     value?: string | ReadonlyArray<string> | number | undefined;
     onChange?: (e: any) => void | undefined;
 };
 
-function InputComponent({ type, id, value, onChange }: Props): JSX.Element {
-    return <InputBar type={type} id={id} value={value} onChange={onChange} />;
+function InputComponent({
+    type,
+    id,
+    value,
+    onChange,
+    name,
+}: Props): JSX.Element {
+    return (
+        <InputBar
+            name={name}
+            type={type}
+            id={id}
+            value={value}
+            onChange={onChange}
+        />
+    );
 }
 
 InputComponent.defaultProps = {

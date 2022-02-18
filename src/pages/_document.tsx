@@ -8,6 +8,10 @@ import Document, {
     NextScript,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import Cookies from 'js-cookie';
+import { useDispatch, useSelector } from 'react-redux';
+import { ApplicationState } from '../store';
+import { ActionsList } from '../store/ducks/user';
 
 export default class MyDocument extends Document {
     static async getInitialProps(
@@ -39,9 +43,20 @@ export default class MyDocument extends Document {
     }
 
     render(): JSX.Element {
+        function tokenCheck() {
+            const dispatch = useDispatch();
+            const token = Cookies.get('token');
+            const checked = useSelector(
+                (state: ApplicationState) => state.user.session.checked
+            );
+            if (!checked && token) {
+                dispatch(ActionsList.profileRequest({ token }));
+            }
+        }
+
         return (
             <Html lang="pt">
-                <Head>
+                <Head onLoad={this.tokenCheck}>
                     <meta httpEquiv="Content-Language" content="pt-br, pt" />
                     <link rel="preconnect" href="https://fonts.gstatic.com" />
                     <link

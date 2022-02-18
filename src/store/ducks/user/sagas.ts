@@ -1,6 +1,7 @@
 import { put } from 'redux-saga/effects';
 import fetch from 'isomorphic-fetch';
 import Router from 'next/router';
+import Cookies from 'js-cookie';
 import { ActionsList as UserActionList } from '.';
 
 export function* sendLogin(data) {
@@ -15,7 +16,34 @@ export function* sendLogin(data) {
     const dataResp = yield resp.json();
 
     if (resp.status === 200) {
+        Cookies.set('token', dataResp.token);
         yield put(UserActionList.loginSuccess(dataResp));
+    }
+}
+
+export function* requestProfile(value) {
+    try {
+        const resp = yield fetch('http://localhost:4000/api/v1/getProfile', {
+            method: 'get',
+            headers: new Headers({
+                'content-type': 'application/json',
+                'x-access-token': value.payload.data.token,
+            }),
+        });
+        const dataResp = yield resp.json();
+        if (dataResp.token) {
+            Cookies.set('token', dataResp.token);
+            yield put(UserActionList.loginSuccess(dataResp));
+            console.log('token atualizado meu bom!');
+        }
+        /*
+        if (dataResp.message) {
+            yield put(UserActionList.logoutRequest());
+        } else {
+            yield put(UserActionList.tokenRetrieveSuccess(dataResp));
+        } */
+    } catch (err) {
+        // yield put(UserActionList.logoutRequest());
     }
 }
 
