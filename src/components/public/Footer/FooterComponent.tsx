@@ -2,14 +2,15 @@ import React, { ReactChild, ReactChildren } from 'react';
 import styled from 'styled-components';
 
 const Footer = styled.footer`
-    width: 100%;
+    width: 100vw;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #aeaeae;
+    color: ${props => props.theme.colors.text};
     position: absolute;
     bottom: 0px;
+    left: 0px;
 `;
 
 type Props = {

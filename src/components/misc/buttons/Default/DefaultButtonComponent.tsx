@@ -2,15 +2,17 @@ import React, { ReactChild, ReactChildren } from 'react';
 import styled from 'styled-components';
 
 const ButtonTemplate = styled.button`
-    background-color: #2e0078;
-    border-radius: 20px;
-    color: #fff;
-    padding: 15px 30px;
+    background-color: ${props => props.theme.colors.primary};
+    border-radius: 8px;
+    color: ${props => props.theme.colors.white};
+    padding: 16px 32px;
     border: none;
     font-size: 16px;
     text-transform: uppercase;
+    transition: all 0.2s;
     &:hover {
         cursor: pointer;
+        background-color: ${props => props.theme.colors.primarySelected};
     }
     &:focus {
         outline: none;

@@ -1,11 +1,19 @@
 const theme = {
     colors: {
-        primaryBackground: '#2E2E2E',
-        secondaryBackground: '#0a0a0a',
-        borderLight: '#7d7d7d',
-        borderDark: '#0a0a0a',
+        background: {
+            primary: '#2E2E2E',
+            secondary: '#0a0a0a',
+            light: '#5a5a5a',
+        },
+        border: {
+            light: '#7d7d7d',
+            dark: '#0a0a0a',
+        },
+        link: '#00AEFF',
         text: '#D8D8D8',
-        primary: '#AEAEAE',
+        primary: '#2e0078',
+        primarySelected: '#23005C',
+        white: '#fff',
     },
 };
 

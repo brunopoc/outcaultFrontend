@@ -66,6 +66,7 @@ export default function Home(): JSX.Element {
                                 name="email-box"
                                 type="text"
                                 id="email-box"
+                                label="Email"
                             />
                             <DefaultButtonComponent type="submit">
                                 Participe Agora

@@ -23,15 +23,10 @@ const FormArea = styled.div`
     align-items: center;
 `;
 
-const LabelArea = styled.label`
-    text-align: center;
-    margin-top: 15px;
-`;
-
 const MainArea = styled.div`
     display: flex;
     justify-content: end;
-    margin: 100px 0px;
+    margin: 100px 0px 200px 0px;
 `;
 
 const ButtonContainer = styled.div`
@@ -40,6 +35,12 @@ const ButtonContainer = styled.div`
 
 const LinkContainer = styled.a`
     margin: 24px 0px;
+    color: ${props => props.theme.colors.link};
+    transition: all, 0.2s;
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 `;
 
 export default function Login(): JSX.Element {
@@ -76,38 +77,36 @@ export default function Login(): JSX.Element {
                     <Row>
                         <MainArea>
                             <CardComponent>
-                                <form onSubmit={handleSubmit}>
-                                    <FormArea>
-                                        <LabelArea htmlFor="email-box">
-                                            Email:
-                                        </LabelArea>
-                                        <InputComponent
-                                            type="text"
-                                            name="emailBox"
-                                            id="email-box"
-                                            onChange={e =>
-                                                setEmail(e.target.value)
-                                            }
-                                            value={email}
-                                        />
-                                        <LabelArea htmlFor="password-box">
-                                            Senha:
-                                        </LabelArea>
-                                        <InputComponent
-                                            type="password"
-                                            name="passwordBox"
-                                            id="password-box"
-                                        />
-                                        <ButtonContainer>
-                                            <DefaultButtonComponent type="submit">
-                                                entrar
-                                            </DefaultButtonComponent>
-                                        </ButtonContainer>
-                                    </FormArea>
-                                </form>
-                                <LinkContainer>
-                                    Esqueci minha senha
-                                </LinkContainer>
+                                <>
+                                    <form onSubmit={handleSubmit}>
+                                        <FormArea>
+                                            <InputComponent
+                                                type="text"
+                                                name="emailBox"
+                                                id="email-box"
+                                                onChange={e =>
+                                                    setEmail(e.target.value)
+                                                }
+                                                value={email}
+                                                label="Email"
+                                            />
+                                            <InputComponent
+                                                type="password"
+                                                name="passwordBox"
+                                                id="password-box"
+                                                label="Senha"
+                                            />
+                                            <ButtonContainer>
+                                                <DefaultButtonComponent type="submit">
+                                                    entrar
+                                                </DefaultButtonComponent>
+                                            </ButtonContainer>
+                                        </FormArea>
+                                    </form>
+                                    <LinkContainer>
+                                        Esqueci minha senha
+                                    </LinkContainer>
+                                </>
                             </CardComponent>
                         </MainArea>
                     </Row>
@@ -116,9 +115,7 @@ export default function Login(): JSX.Element {
 
             <Container>
                 <Row>
-                    <FooterComponent>
-                        Web Comics - Alpha Version
-                    </FooterComponent>
+                    <FooterComponent>ComicBook - Alpha Version</FooterComponent>
                 </Row>
             </Container>
         </>

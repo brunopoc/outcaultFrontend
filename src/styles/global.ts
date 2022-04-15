@@ -8,8 +8,10 @@ export default createGlobalStyle`
     }
 
     body {
-        background-color: ${props => props.theme.colors.primaryBackground};
+        background-color: ${props => props.theme.colors.background.primary};
         color: ${props => props.theme.colors.text};
         font: 400 16px 'Roboto', sans-serif;
+        position: relative;
+        min-height: 100vh;
     }
 `;

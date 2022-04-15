@@ -22,11 +22,6 @@ const FormArea = styled.div`
     align-items: center;
 `;
 
-const LabelArea = styled.label`
-    text-align: center;
-    margin-top: 15px;
-`;
-
 export default function cadastro(): JSX.Element {
     onlyNotAuth();
     const globalEmail = useSelector(
@@ -62,33 +57,37 @@ export default function cadastro(): JSX.Element {
                 <CardComponent>
                     <form onSubmit={handleSubmit}>
                         <FormArea>
-                            <LabelArea htmlFor="email-box">Nome:</LabelArea>
                             <InputComponent
                                 type="text"
                                 id="name-box"
+                                name="name-box"
                                 value={nameField}
                                 onChange={e => setNameField(e.target.value)}
+                                label="Nome"
                             />
-                            <LabelArea htmlFor="email-box">Apelido:</LabelArea>
                             <InputComponent
                                 type="text"
                                 id="nickname-box"
+                                name="nickname-box"
                                 value={nickname}
                                 onChange={e => setNickname(e.target.value)}
+                                label="Apelido"
                             />
-                            <LabelArea htmlFor="email-box">Email:</LabelArea>
                             <InputComponent
                                 type="text"
                                 id="email-box"
+                                name="email-box"
                                 value={emailField}
                                 onChange={e => setEmailField(e.target.value)}
+                                label="Email"
                             />
-                            <LabelArea htmlFor="password-box">Senha:</LabelArea>
                             <InputComponent
                                 type="password"
                                 id="password-box"
+                                name="password-box"
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
+                                label="Senha"
                             />
                             <DefaultButtonComponent type="submit">
                                 cadastrar

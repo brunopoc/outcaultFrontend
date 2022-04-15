@@ -13,7 +13,7 @@ const CardTemplate = styled.div`
     justify-content: center;
     align-self: center;
     align-items: center;
-    background-color: ${props => props.theme.colors.secondaryBackground};
+    background-color: ${props => props.theme.colors.background.secondary};
 `;
 
 type Props = {
