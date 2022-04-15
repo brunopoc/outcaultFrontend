@@ -61,6 +61,8 @@ export function* emailCheckRequest(data) {
         }
     );
 
+    yield put(UserActionList.emailRecord(email));
+
     if (resp.status === 200) {
         Router.push('/login');
     } else if (resp.status === 406) {

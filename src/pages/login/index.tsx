@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,9 +29,11 @@ const LabelArea = styled.label`
 
 export default function Login(): JSX.Element {
     onlyNotAuth();
-    // const globalEmail = useSelector(
-    //    (state: ApplicationState) => state.user.info.email
-    // );
+
+    const userEmail =
+        useSelector((state: ApplicationState) => state.user.info.email) || '';
+
+    const [email, setEmail] = useState(userEmail);
 
     const dispatch = useDispatch();
 
@@ -61,6 +63,8 @@ export default function Login(): JSX.Element {
                                 type="text"
                                 name="emailBox"
                                 id="email-box"
+                                onChange={e => setEmail(e.target.value)}
+                                value={email}
                             />
                             <LabelArea htmlFor="password-box">Senha:</LabelArea>
                             <InputComponent
