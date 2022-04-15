@@ -8,6 +8,8 @@ const Footer = styled.footer`
     justify-content: center;
     align-items: center;
     color: #aeaeae;
+    position: absolute;
+    bottom: 0px;
 `;
 
 type Props = {

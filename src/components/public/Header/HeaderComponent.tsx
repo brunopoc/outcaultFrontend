@@ -7,6 +7,9 @@ const MainHeader = styled.header`
     display: flex;
     align-items: center;
     padding: 20px;
+    background-color: ${props => props.theme.colors.secondaryBackground};
+    border-bottom: 1px solid;
+    border-color: ${props => props.theme.colors.borderLight};
 `;
 
 const LogoImage = styled.img`

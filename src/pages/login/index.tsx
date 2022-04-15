@@ -13,6 +13,7 @@ import {
     DefaultButtonComponent,
     InputComponent,
     FooterComponent,
+    PublicHeaderComponent,
 } from '../../components';
 
 const FormArea = styled.div`
@@ -25,6 +26,20 @@ const FormArea = styled.div`
 const LabelArea = styled.label`
     text-align: center;
     margin-top: 15px;
+`;
+
+const MainArea = styled.div`
+    display: flex;
+    justify-content: end;
+    margin: 100px 0px;
+`;
+
+const ButtonContainer = styled.div`
+    margin: 24px 0px;
+`;
+
+const LinkContainer = styled.a`
+    margin: 24px 0px;
 `;
 
 export default function Login(): JSX.Element {
@@ -54,30 +69,49 @@ export default function Login(): JSX.Element {
                 <title>WebComics</title>
             </Head>
 
+            <PublicHeaderComponent />
+
             <main>
-                <CardComponent>
-                    <form onSubmit={handleSubmit}>
-                        <FormArea>
-                            <LabelArea htmlFor="email-box">Email:</LabelArea>
-                            <InputComponent
-                                type="text"
-                                name="emailBox"
-                                id="email-box"
-                                onChange={e => setEmail(e.target.value)}
-                                value={email}
-                            />
-                            <LabelArea htmlFor="password-box">Senha:</LabelArea>
-                            <InputComponent
-                                type="password"
-                                name="passwordBox"
-                                id="password-box"
-                            />
-                            <DefaultButtonComponent type="submit">
-                                entrar
-                            </DefaultButtonComponent>
-                        </FormArea>
-                    </form>
-                </CardComponent>
+                <Container>
+                    <Row>
+                        <MainArea>
+                            <CardComponent>
+                                <form onSubmit={handleSubmit}>
+                                    <FormArea>
+                                        <LabelArea htmlFor="email-box">
+                                            Email:
+                                        </LabelArea>
+                                        <InputComponent
+                                            type="text"
+                                            name="emailBox"
+                                            id="email-box"
+                                            onChange={e =>
+                                                setEmail(e.target.value)
+                                            }
+                                            value={email}
+                                        />
+                                        <LabelArea htmlFor="password-box">
+                                            Senha:
+                                        </LabelArea>
+                                        <InputComponent
+                                            type="password"
+                                            name="passwordBox"
+                                            id="password-box"
+                                        />
+                                        <ButtonContainer>
+                                            <DefaultButtonComponent type="submit">
+                                                entrar
+                                            </DefaultButtonComponent>
+                                        </ButtonContainer>
+                                    </FormArea>
+                                </form>
+                                <LinkContainer>
+                                    Esqueci minha senha
+                                </LinkContainer>
+                            </CardComponent>
+                        </MainArea>
+                    </Row>
+                </Container>
             </main>
 
             <Container>

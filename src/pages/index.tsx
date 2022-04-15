@@ -62,7 +62,11 @@ export default function Home(): JSX.Element {
                             <LabelArea htmlFor="email-box">
                                 Digite seu email para continuar
                             </LabelArea>
-                            <InputComponent type="text" id="email-box" />
+                            <InputComponent
+                                name="email-box"
+                                type="text"
+                                id="email-box"
+                            />
                             <DefaultButtonComponent type="submit">
                                 Participe Agora
                             </DefaultButtonComponent>
