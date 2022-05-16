@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
 import { ActionsList as UserActionList } from '.';
+import { ActionsList as SystemActionList } from '../system';
 
 export function* sendLogin(data) {
     const { email, password } = data.payload;
@@ -22,6 +23,7 @@ export function* sendLogin(data) {
 }
 
 export function* requestProfile(value) {
+    yield put(SystemActionList.startLoading());
     try {
         const resp = yield fetch('http://localhost:4000/api/v1/getProfile', {
             method: 'get',
@@ -34,8 +36,8 @@ export function* requestProfile(value) {
         if (dataResp.token) {
             Cookies.set('token', dataResp.token);
             yield put(UserActionList.loginSuccess(dataResp));
-            console.log('token atualizado meu bom!');
         }
+        yield put(SystemActionList.finishLoading());
         /*
         if (dataResp.message) {
             yield put(UserActionList.logoutRequest());
@@ -44,29 +46,36 @@ export function* requestProfile(value) {
         } */
     } catch (err) {
         // yield put(UserActionList.logoutRequest());
+        yield put(SystemActionList.finishLoading());
     }
 }
 
 export function* emailCheckRequest(data) {
-    const { email } = data.payload;
+    yield put(SystemActionList.startLoading());
+    try {
+        const { email } = data.payload;
 
-    const resp = yield fetch(
-        `http://localhost:4000/api/v1/user/email/alreadyin`,
-        {
-            method: 'post',
-            body: JSON.stringify({ email }, null, 2),
-            headers: new Headers({
-                'content-type': 'application/json',
-            }),
+        const resp = yield fetch(
+            `http://localhost:4000/api/v1/user/email/alreadyin`,
+            {
+                method: 'post',
+                body: JSON.stringify({ email }, null, 2),
+                headers: new Headers({
+                    'content-type': 'application/json',
+                }),
+            }
+        );
+
+        yield put(UserActionList.emailRecord(email));
+
+        if (resp.status === 200) {
+            Router.push('/login');
+        } else if (resp.status === 406) {
+            Router.push('/cadastro');
         }
-    );
-
-    yield put(UserActionList.emailRecord(email));
-
-    if (resp.status === 200) {
-        Router.push('/login');
-    } else if (resp.status === 406) {
-        Router.push('/cadastro');
+        yield put(SystemActionList.finishLoading());
+    } catch (err) {
+        yield put(SystemActionList.finishLoading());
     }
 }
 

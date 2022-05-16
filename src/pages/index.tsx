@@ -12,6 +12,7 @@ import {
     InputComponent,
     CardComponent,
     FooterComponent,
+    DefaultLoadingComponent,
 } from '../components';
 import { Container, Row } from '../styles/Grid';
 
@@ -26,10 +27,19 @@ const LabelArea = styled.label`
     text-align: center;
 `;
 
+const MainContainer = styled.div`
+    display: flex;
+    justify-content: end;
+    padding: 50px 0px;
+`;
+
 export default function Home(): JSX.Element {
     const dispatch = useDispatch();
     const emailCheck = useSelector(
         (state: ApplicationState) => state.user.session.emailStatus
+    );
+    const isLoading = useSelector(
+        (state: ApplicationState) => state.system.loading
     );
 
     useEffect(() => {
@@ -55,26 +65,34 @@ export default function Home(): JSX.Element {
 
             <PublicHeaderComponent />
 
-            <main>
-                <CardComponent>
-                    <form onSubmit={handleSubmit}>
-                        <FormArea>
-                            <LabelArea htmlFor="email-box">
-                                Digite seu email para continuar
-                            </LabelArea>
-                            <InputComponent
-                                name="email-box"
-                                type="text"
-                                id="email-box"
-                                label="Email"
-                            />
-                            <DefaultButtonComponent type="submit">
-                                Participe Agora
-                            </DefaultButtonComponent>
-                        </FormArea>
-                    </form>
-                </CardComponent>
-            </main>
+            <Container>
+                <Row>
+                    <MainContainer>
+                        <CardComponent>
+                            {isLoading ? (
+                                <DefaultLoadingComponent />
+                            ) : (
+                                <form onSubmit={handleSubmit}>
+                                    <FormArea>
+                                        <LabelArea htmlFor="email-box">
+                                            Digite seu email para continuar
+                                        </LabelArea>
+                                        <InputComponent
+                                            name="email-box"
+                                            type="text"
+                                            id="email-box"
+                                            label="Email"
+                                        />
+                                        <DefaultButtonComponent type="submit">
+                                            Participe Agora
+                                        </DefaultButtonComponent>
+                                    </FormArea>
+                                </form>
+                            )}
+                        </CardComponent>
+                    </MainContainer>
+                </Row>
+            </Container>
 
             <Container>
                 <Row>

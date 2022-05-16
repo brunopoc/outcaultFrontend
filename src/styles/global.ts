@@ -13,5 +13,6 @@ export default createGlobalStyle`
         font: 400 16px 'Roboto', sans-serif;
         position: relative;
         min-height: 100vh;
+        padding-bottom: 100px;
     }
 `;
