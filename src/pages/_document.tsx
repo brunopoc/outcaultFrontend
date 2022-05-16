@@ -56,12 +56,16 @@ export default class MyDocument extends Document {
 
         return (
             <Html lang="pt">
-                <Head onLoad={this.tokenCheck}>
+                <Head onLoad={tokenCheck}>
                     <meta httpEquiv="Content-Language" content="pt-br, pt" />
                     <link rel="preconnect" href="https://fonts.gstatic.com" />
                     <link
                         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800"
                         rel="stylesheet"
+                    />
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1.0"
                     />
                 </Head>
                 <body>
