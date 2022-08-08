@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
     }
 
     return (
-        <div>
+        <>
             <Head>
                 <title>WebComics</title>
             </Head>
@@ -31,6 +31,6 @@ export default function Home(): JSX.Element {
             </main>
 
             <footer>Footer</footer>
-        </div>
+        </>
     );
 }

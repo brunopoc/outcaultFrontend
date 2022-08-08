@@ -96,3 +96,8 @@ export function* registerRequest(data) {
         Router.push('/cadastro');
     }
 }
+
+export function* logoutRequest() {
+    yield Cookies.remove('token');
+    Router.push('/login');
+}
