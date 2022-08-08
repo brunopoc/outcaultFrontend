@@ -19,7 +19,7 @@ import { Container, Row } from '../styles/Grid';
 const FormArea = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 `;
 

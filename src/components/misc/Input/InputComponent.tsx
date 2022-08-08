@@ -1,17 +1,31 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import debounce from '../../../utils/debounce';
 
 const InputBar = styled.input`
-    background-color: ${props => props.theme.colors.background.light};
-    border-radius: 8px;
+    background-color: ${props => props.theme.colors.background.primary};
     color: ${props => props.theme.colors.text};
     padding: 8px;
     border: none;
     font-size: 14px;
     padding: 16px 32px;
     margin: 8px 0px;
+    width: 100%;
     &:focus {
         outline: none;
+    }
+    &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px
+            ${props => props.theme.colors.background.primary} inset;
+        color: ${props => props.theme.colors.text} !important;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+        -webkit-text-fill-color: ${props => props.theme.colors.text};
+        -webkit-box-shadow: 0 0 0px 1000px
+            ${props => props.theme.colors.background.primary} inset;
     }
 `;
 
@@ -27,6 +41,7 @@ const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 100%;
 
     &:focus-within label,
     .Active {
@@ -52,13 +67,20 @@ function InputComponent({
     label,
 }: Props): JSX.Element {
     const [isActive, setIsActive] = useState(false);
+    const [currentValue, setcurrentValue] = useState(value);
 
     function handleDirty() {
-        if (value) {
+        if (currentValue) {
             setIsActive(true);
         } else {
             setIsActive(false);
         }
+    }
+
+    function handleChange(e) {
+        if (onChange) onChange(e);
+        setcurrentValue(e.target.value);
+        handleDirty();
     }
 
     useEffect(() => {
@@ -75,10 +97,9 @@ function InputComponent({
                 type={type}
                 id={id}
                 value={value}
-                onChange={e => {
-                    if (onChange) onChange(e);
-                    handleDirty();
-                }}
+                onChange={handleChange}
+                onBlur={handleChange}
+                onClick={handleChange}
             />
         </InputContainer>
     );
