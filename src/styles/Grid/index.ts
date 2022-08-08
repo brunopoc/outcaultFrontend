@@ -21,6 +21,7 @@ export const Container = styled.div`
     margin-left: auto;
     box-sizing: border-box;
     width: 100%;
+    height: auto;
     &:before,
     &:after {
         content: ' ';

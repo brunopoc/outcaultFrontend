@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const InputBar = styled.input`
@@ -53,15 +53,17 @@ function InputComponent({
 }: Props): JSX.Element {
     const [isActive, setIsActive] = useState(false);
 
-    function handleDirty(e) {
-        if (onChange) onChange(e);
-
-        if (e.target.value !== '') {
+    function handleDirty() {
+        if (value) {
             setIsActive(true);
         } else {
             setIsActive(false);
         }
     }
+
+    useEffect(() => {
+        handleDirty();
+    }, []);
 
     return (
         <InputContainer>
@@ -73,7 +75,10 @@ function InputComponent({
                 type={type}
                 id={id}
                 value={value}
-                onChange={e => handleDirty(e)}
+                onChange={e => {
+                    if (onChange) onChange(e);
+                    handleDirty();
+                }}
             />
         </InputContainer>
     );

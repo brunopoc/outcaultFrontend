@@ -8,6 +8,8 @@ export enum actionUserTypes {
     LOGIN_SUCCESS = '@user/login/LOGIN_SUCCESS',
     LOGIN_FAILED = '@user/login/LOGIN_FAILED',
 
+    LOGOUT_REQUEST = '@user/login/LOGOUT_REQUEST',
+
     REGISTER_REQUEST = '@user/register/REGISTER_REQUEST',
     REGISTER_SUCCESS = '@user/register/REGISTER_SUCCESS',
     REGISTER_FAILED = '@user/register/REGISTER_FAILED',
@@ -54,6 +56,9 @@ export const ActionsList = {
         type: actionUserTypes.LOGIN_SUCCESS,
         payload: { data },
     }),
+    logoutRequest: (): any => ({
+        type: actionUserTypes.LOGOUT_REQUEST,
+    }),
     registerRequest: (data): any => ({
         type: actionUserTypes.REGISTER_REQUEST,
         payload: { data },
@@ -98,6 +103,14 @@ const reducer: Reducer<UserState> = (state = INITIAL_STATE, reduceAction) => {
                 info: {
                     ...state.info,
                     ...reduceAction.payload.data.data,
+                },
+            };
+        case actionUserTypes.LOGOUT_REQUEST:
+            return {
+                ...state,
+                session: {
+                    logged: false,
+                    token: '',
                 },
             };
         default:

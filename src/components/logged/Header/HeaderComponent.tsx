@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { Container, Row, Column } from '../../../styles/Grid';
+import { ActionsList } from '../../../store/ducks/user';
 
 const MainHeader = styled.header`
     width: 100%;
-    height: 50px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid ${props => props.theme.colors.primary};
@@ -13,6 +14,8 @@ const MainHeader = styled.header`
 const ActionArea = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    height: 100px;
 `;
 
 const MenuArea = styled.div`
@@ -54,33 +57,76 @@ const UserButton = styled.button`
     justify-content: center;
     align-items: center;
     margin-left: 10px;
+    &:hover {
+        cursor: pointer;
+    }
     &:focus {
         outline: none;
     }
 `;
 
-const HeaderComponent = (): JSX.Element => (
-    <MainHeader>
-        <Container>
-            <Row>
-                <Column mobile="12" tablet="12" desktop="2">
-                    <img src="/img/logo.png" alt="Logo da ComicsBook" />
-                </Column>
-                <Column mobile="12" tablet="12" desktop="10">
-                    <ActionArea>
-                        <MenuArea>
-                            <MenuList>
-                                <MenuItem>Artistas</MenuItem>
-                                <MenuItem>Categorias</MenuItem>
-                            </MenuList>
-                        </MenuArea>
-                        <SearchBar type="text" />
-                        <UserButton type="button">BC</UserButton>
-                    </ActionArea>
-                </Column>
-            </Row>
-        </Container>
-    </MainHeader>
-);
+const MenuModal = styled.div`
+    position: absolute;
+    top: 50px;
+    border: 1px solid white;
+    padding: 10px;
+    background: black;
+    min-width: 200px;
+`;
+
+const ProfileArea = styled.div`
+    position: relative;
+`;
+
+const HeaderComponent = (): JSX.Element => {
+    const [menuState, setMenuState] = useState(false);
+    const handleProfileMenu = () => {
+        setMenuState(!menuState);
+    };
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(ActionsList.logoutRequest());
+    };
+    return (
+        <MainHeader>
+            <Container>
+                <Row>
+                    <Column mobile="12" tablet="12" desktop="2">
+                        <img src="/img/logo.png" alt="Logo da ComicsBook" />
+                    </Column>
+                    <Column mobile="12" tablet="12" desktop="10">
+                        <ActionArea>
+                            <MenuArea>
+                                <MenuList>
+                                    <MenuItem>Artistas</MenuItem>
+                                    <MenuItem>Categorias</MenuItem>
+                                </MenuList>
+                            </MenuArea>
+                            <SearchBar type="text" />
+                            <ProfileArea>
+                                <UserButton
+                                    onClick={handleProfileMenu}
+                                    type="button"
+                                >
+                                    BC
+                                </UserButton>
+                                {menuState ? (
+                                    <MenuModal>
+                                        <ul>
+                                            <li> Meu Perfil </li>
+                                            <li onClick={handleLogout}>Sair</li>
+                                        </ul>
+                                    </MenuModal>
+                                ) : (
+                                    ''
+                                )}
+                            </ProfileArea>
+                        </ActionArea>
+                    </Column>
+                </Row>
+            </Container>
+        </MainHeader>
+    );
+};
 
 export default HeaderComponent;
