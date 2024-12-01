@@ -3,10 +3,10 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ActionsList } from '../../store/ducks/user';
-import { ApplicationState } from '../../store';
+import { Container, Row } from '@styles/Grid';
+import { ActionsList } from '@store/ducks/auth';
+import { ApplicationState } from '@store/index';
 
-import { Container, Row } from '../../styles/Grid';
 import {
     CardComponent,
     DefaultButtonComponent,
@@ -23,7 +23,7 @@ const FormArea = styled.div`
 
 export default function cadastro(): JSX.Element {
     const globalEmail = useSelector(
-        (state: ApplicationState) => state.user.info.email,
+        (state: ApplicationState) => state.auth.info.email,
     );
 
     const [emailField, setEmailField] = useState(globalEmail);

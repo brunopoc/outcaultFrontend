@@ -3,7 +3,7 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ActionsList } from '@store/ducks/user';
+import { ActionsList } from '@store/ducks/auth';
 import { ApplicationState } from '@store/index';
 
 import { Container, Row } from '@styles/Grid';
@@ -44,7 +44,7 @@ const LinkContainer = styled.a`
 
 export default function Login(): JSX.Element {
     const userEmail =
-        useSelector((state: ApplicationState) => state.user.info.email) || '';
+        useSelector((state: ApplicationState) => state.auth.info.email) || '';
 
     const [email, setEmail] = useState(userEmail);
 

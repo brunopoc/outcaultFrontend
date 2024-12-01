@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { Container, Row, Column } from '../../../styles/Grid';
-import { ActionsList } from '../../../store/ducks/user';
+import { ActionsList } from '../../../store/ducks/auth';
 
 const MainHeader = styled.header`
     width: 100%;
@@ -78,7 +78,7 @@ const ProfileArea = styled.div`
     position: relative;
 `;
 
-const HeaderComponent = (): JSX.Element => {
+function HeaderComponent(): JSX.Element {
     const [menuState, setMenuState] = useState(false);
     const handleProfileMenu = () => {
         setMenuState(!menuState);
@@ -127,6 +127,6 @@ const HeaderComponent = (): JSX.Element => {
             </Container>
         </MainHeader>
     );
-};
+}
 
 export default HeaderComponent;

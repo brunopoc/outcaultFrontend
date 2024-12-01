@@ -30,6 +30,7 @@ const INITIAL_STATE: SystemState = {
     error: false,
 };
 
+// eslint-disable-next-line default-param-last
 const reducer: Reducer<SystemState> = (state = INITIAL_STATE, reduceAction) => {
     switch (reduceAction.type) {
         case actionSystemTypes.START_LOADING:

@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware, Store } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createWrapper } from 'next-redux-wrapper';
-import { UserState } from './ducks/user';
+import { AuthState } from './ducks/auth';
 import { SystemState } from './ducks/system';
 import rootReducer from './ducks/rootReducer';
 import rootSaga from './ducks/rootSaga';
 
 export interface ApplicationState {
-    user?: UserState;
+    auth?: AuthState;
     system?: SystemState;
 }
 

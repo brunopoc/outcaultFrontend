@@ -4,7 +4,6 @@ import { ThemeProvider } from 'styled-components';
 import theme from '@styles/theme';
 import GlobalStyle from '@styles/global';
 import wrapper from '@store/index';
-import { AuthProvider, useAuth } from '@utils/auth';
 
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
@@ -20,12 +19,10 @@ class MyApp extends App {
     render() {
         const { Component, pageProps } = this.props;
         return (
-            <AuthProvider>
-                <ThemeProvider theme={theme}>
-                    <GlobalStyle />
-                    <Component {...pageProps} />
-                </ThemeProvider>
-            </AuthProvider>
+            <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <Component {...pageProps} />
+            </ThemeProvider>
         );
     }
 }

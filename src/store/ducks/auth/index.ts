@@ -1,9 +1,6 @@
 import { Reducer } from 'redux';
 
-export enum actionUserTypes {
-    EMAIL_CHECK_REQUEST = '@user/EMAIL_CHECK_REQUEST',
-    EMAIL_RECORD = '@user/EMAIL_RECORD',
-
+export enum actionAuthTypes {
     LOGIN_REQUEST = '@user/login/LOGIN_REQUEST',
     LOGIN_SUCCESS = '@user/login/LOGIN_SUCCESS',
     LOGIN_FAILED = '@user/login/LOGIN_FAILED',
@@ -18,14 +15,11 @@ export enum actionUserTypes {
 }
 
 type sessionData = {
-    logged: boolean;
-    emailStatus?: string;
-    token?: string;
-    checked: boolean;
+    isAuthenticated: false;
+    isLoading: false;
 };
 
 type userInfoData = {
-    id?: string;
     name?: string;
     email: string;
     type?: string;
@@ -34,49 +28,41 @@ type userInfoData = {
     verified?: boolean;
 };
 
-export interface UserState {
+export interface AuthState {
     info?: userInfoData;
     session: sessionData;
 }
 
 export const ActionsList = {
-    emailCheckRequest: (email): any => ({
-        type: actionUserTypes.EMAIL_CHECK_REQUEST,
-        payload: email,
-    }),
-    emailRecord: (email): any => ({
-        type: actionUserTypes.EMAIL_RECORD,
-        payload: { email },
-    }),
     loginRequest: ({ email, password }): any => ({
-        type: actionUserTypes.LOGIN_REQUEST,
+        type: actionAuthTypes.LOGIN_REQUEST,
         payload: { email, password },
     }),
     loginSuccess: (data): any => ({
-        type: actionUserTypes.LOGIN_SUCCESS,
+        type: actionAuthTypes.LOGIN_SUCCESS,
         payload: { data },
     }),
     logoutRequest: (): any => ({
-        type: actionUserTypes.LOGOUT_REQUEST,
+        type: actionAuthTypes.LOGOUT_REQUEST,
     }),
     registerRequest: (data): any => ({
-        type: actionUserTypes.REGISTER_REQUEST,
+        type: actionAuthTypes.REGISTER_REQUEST,
         payload: { data },
     }),
     registerSuccess: (data): any => ({
-        type: actionUserTypes.REGISTER_SUCCESS,
+        type: actionAuthTypes.REGISTER_SUCCESS,
         payload: { data },
     }),
     profileRequest: (data): any => ({
-        type: actionUserTypes.REQUEST_PROFILE,
+        type: actionAuthTypes.REQUEST_PROFILE,
         payload: { data },
     }),
 };
 
-const INITIAL_STATE: UserState = {
+const INITIAL_STATE: AuthState = {
     session: {
-        logged: false,
-        checked: false,
+        isAuthenticated: false,
+        isLoading: false,
     },
     info: {
         email: '',
@@ -84,19 +70,12 @@ const INITIAL_STATE: UserState = {
 };
 
 const reducer: Reducer<any> = (
+    // eslint-disable-next-line default-param-last
     state = INITIAL_STATE,
-    reduceAction: { payload: any; type: actionUserTypes },
+    reduceAction: { payload: any; type: actionAuthTypes },
 ) => {
     switch (reduceAction.type) {
-        case actionUserTypes.EMAIL_RECORD:
-            return {
-                ...state,
-                info: {
-                    ...state.info,
-                    email: reduceAction.payload.email,
-                },
-            };
-        case actionUserTypes.LOGIN_SUCCESS:
+        case actionAuthTypes.LOGIN_SUCCESS:
             return {
                 ...state,
                 session: {
@@ -108,7 +87,7 @@ const reducer: Reducer<any> = (
                     ...reduceAction.payload.data.data,
                 },
             };
-        case actionUserTypes.LOGOUT_REQUEST:
+        case actionAuthTypes.LOGOUT_REQUEST:
             return {
                 ...state,
                 session: {

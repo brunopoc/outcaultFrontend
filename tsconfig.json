@@ -18,9 +18,6 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
-      "@utils/*": [
-        "./src/utils/*"
-      ],
       "@styles/*": [
         "./src/styles/*"
       ],
@@ -39,6 +36,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "eslint.config.mjs"
   ]
 }
