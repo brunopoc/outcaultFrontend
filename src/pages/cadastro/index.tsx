@@ -7,11 +7,12 @@ import { Container, Row } from '@styles/Grid';
 import { ActionsList } from '@store/ducks/auth';
 import { ApplicationState } from '@store/index';
 
+import { TextField } from '@mui/material';
+
 import {
     CardComponent,
     DefaultButtonComponent,
-    InputComponent,
-    FooterComponent,
+    HeaderComponent,
 } from '../../components';
 
 const FormArea = styled.div`
@@ -51,11 +52,14 @@ export default function cadastro(): JSX.Element {
                 <title>WebComics</title>
             </Head>
 
+            <HeaderComponent />
+
             <main>
                 <CardComponent>
                     <form onSubmit={handleSubmit}>
                         <FormArea>
-                            <InputComponent
+                            <TextField
+                                variant="outlined"
                                 type="text"
                                 id="name-box"
                                 name="name-box"
@@ -63,7 +67,8 @@ export default function cadastro(): JSX.Element {
                                 onChange={e => setNameField(e.target.value)}
                                 label="Nome"
                             />
-                            <InputComponent
+                            <TextField
+                                variant="outlined"
                                 type="text"
                                 id="nickname-box"
                                 name="nickname-box"
@@ -71,7 +76,8 @@ export default function cadastro(): JSX.Element {
                                 onChange={e => setNickname(e.target.value)}
                                 label="Apelido"
                             />
-                            <InputComponent
+                            <TextField
+                                variant="outlined"
                                 type="text"
                                 id="email-box"
                                 name="email-box"
@@ -79,7 +85,8 @@ export default function cadastro(): JSX.Element {
                                 onChange={e => setEmailField(e.target.value)}
                                 label="Email"
                             />
-                            <InputComponent
+                            <TextField
+                                variant="outlined"
                                 type="password"
                                 id="password-box"
                                 name="password-box"
@@ -94,14 +101,6 @@ export default function cadastro(): JSX.Element {
                     </form>
                 </CardComponent>
             </main>
-
-            <Container>
-                <Row>
-                    <FooterComponent>
-                        Web Comics - Alpha Version
-                    </FooterComponent>
-                </Row>
-            </Container>
         </>
     );
 }

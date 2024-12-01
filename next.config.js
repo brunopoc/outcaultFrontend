@@ -1,3 +1,1 @@
-module.exports = {
-    jsconfigPaths: true
-};
+module.exports = {};

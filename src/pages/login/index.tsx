@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ActionsList } from '@store/ducks/auth';
 import { ApplicationState } from '@store/index';
 
+import { TextField } from '@mui/material';
+
 import { Container, Row } from '@styles/Grid';
 import {
     CardComponent,
     DefaultButtonComponent,
-    InputComponent,
-    FooterComponent,
-    PublicHeaderComponent,
+    HeaderComponent,
 } from '../../components';
 
 const FormArea = styled.div`
@@ -67,7 +67,7 @@ export default function Login(): JSX.Element {
                 <title>WebComics</title>
             </Head>
 
-            <PublicHeaderComponent />
+            <HeaderComponent />
 
             <main>
                 <Container>
@@ -77,7 +77,8 @@ export default function Login(): JSX.Element {
                                 <>
                                     <form onSubmit={handleSubmit}>
                                         <FormArea>
-                                            <InputComponent
+                                            <TextField
+                                                variant="outlined"
                                                 type="text"
                                                 name="emailBox"
                                                 id="email-box"
@@ -87,7 +88,8 @@ export default function Login(): JSX.Element {
                                                 value={email}
                                                 label="Email"
                                             />
-                                            <InputComponent
+                                            <TextField
+                                                variant="outlined"
                                                 type="password"
                                                 name="passwordBox"
                                                 id="password-box"
@@ -109,12 +111,6 @@ export default function Login(): JSX.Element {
                     </Row>
                 </Container>
             </main>
-
-            <Container>
-                <Row>
-                    <FooterComponent>ComicBook - Alpha Version</FooterComponent>
-                </Row>
-            </Container>
         </>
     );
 }

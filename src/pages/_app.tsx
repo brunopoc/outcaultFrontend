@@ -1,8 +1,8 @@
 import React from 'react';
 import App from 'next/app';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@mui/styles';
 import theme from '@styles/theme';
-import GlobalStyle from '@styles/global';
+import CssBaseline from '@mui/material/CssBaseline';
 import wrapper from '@store/index';
 
 class MyApp extends App {
@@ -20,7 +20,7 @@ class MyApp extends App {
         const { Component, pageProps } = this.props;
         return (
             <ThemeProvider theme={theme}>
-                <GlobalStyle />
+                <CssBaseline />
                 <Component {...pageProps} />
             </ThemeProvider>
         );
