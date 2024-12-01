@@ -7,8 +7,8 @@ import rootReducer from './ducks/rootReducer';
 import rootSaga from './ducks/rootSaga';
 
 export interface ApplicationState {
-    user: UserState;
-    system: SystemState;
+    user?: UserState;
+    system?: SystemState;
 }
 
 const bindMiddleware = (middleware: any) => applyMiddleware(...middleware);
@@ -17,7 +17,7 @@ function configureStore(): Store<ApplicationState> {
     const sagaMiddleware = createSagaMiddleware();
     const store: Store<ApplicationState> = createStore(
         rootReducer,
-        bindMiddleware([sagaMiddleware])
+        bindMiddleware([sagaMiddleware]),
     );
 
     store.sagaTask = sagaMiddleware.run(rootSaga);

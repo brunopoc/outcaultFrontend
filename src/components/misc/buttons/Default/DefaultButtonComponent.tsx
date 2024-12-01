@@ -1,4 +1,4 @@
-import React, { ReactChild, ReactChildren } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const ButtonTemplate = styled.button`
@@ -19,7 +19,7 @@ const ButtonTemplate = styled.button`
 `;
 
 type Props = {
-    children: ReactChild | ReactChildren;
+    children: ReactNode;
     type: 'button' | 'submit' | 'reset';
 };
 

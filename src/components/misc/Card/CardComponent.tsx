@@ -1,4 +1,4 @@
-import React, { ReactChildren, ReactChild } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const CardTemplate = styled.div`
@@ -14,7 +14,7 @@ const CardTemplate = styled.div`
 `;
 
 type Props = {
-    children: ReactChild | ReactChildren;
+    children: ReactNode;
 };
 
 export default function CardComponent({ children }: Props): JSX.Element {

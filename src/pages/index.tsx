@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Head from 'next/head';
 import styled from 'styled-components';
 import Router from 'next/router';
-import { ActionsList } from '../store/ducks/user';
-import { ApplicationState } from '../store';
+import { ActionsList } from '@store/ducks/user';
+import { ApplicationState } from '@store/index';
 
 import {
     PublicHeaderComponent,
@@ -14,7 +14,7 @@ import {
     FooterComponent,
     DefaultLoadingComponent,
 } from '../components';
-import { Container, Row } from '../styles/Grid';
+import { Container, Row } from '@styles/Grid';
 
 const FormArea = styled.div`
     display: flex;
@@ -36,10 +36,10 @@ const MainContainer = styled.div`
 export default function Home(): JSX.Element {
     const dispatch = useDispatch();
     const emailCheck = useSelector(
-        (state: ApplicationState) => state.user.session.emailStatus
+        (state: ApplicationState) => state.user.session.emailStatus,
     );
     const isLoading = useSelector(
-        (state: ApplicationState) => state.system.loading
+        (state: ApplicationState) => state.system.loading,
     );
 
     useEffect(() => {

@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ActionsList } from '../../store/ducks/user';
 import { ApplicationState } from '../../store';
-import { onlyNotAuth } from '../../utils/auth';
 
 import { Container, Row } from '../../styles/Grid';
 import {
@@ -23,9 +22,8 @@ const FormArea = styled.div`
 `;
 
 export default function cadastro(): JSX.Element {
-    onlyNotAuth();
     const globalEmail = useSelector(
-        (state: ApplicationState) => state.user.info.email
+        (state: ApplicationState) => state.user.info.email,
     );
 
     const [emailField, setEmailField] = useState(globalEmail);
@@ -43,7 +41,7 @@ export default function cadastro(): JSX.Element {
                 password,
                 nickname,
                 name: nameField,
-            })
+            }),
         );
     }
 

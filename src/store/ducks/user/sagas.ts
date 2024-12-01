@@ -1,7 +1,5 @@
 import { put } from 'redux-saga/effects';
-import fetch from 'isomorphic-fetch';
 import Router from 'next/router';
-import Cookies from 'js-cookie';
 import { ActionsList as UserActionList } from '.';
 import { ActionsList as SystemActionList } from '../system';
 
@@ -17,7 +15,7 @@ export function* sendLogin(data) {
     const dataResp = yield resp.json();
 
     if (resp.status === 200) {
-        Cookies.set('token', dataResp.token);
+        // Cookies.set('token', dataResp.token);
         yield put(UserActionList.loginSuccess(dataResp));
     }
 }
@@ -34,7 +32,7 @@ export function* requestProfile(value) {
         });
         const dataResp = yield resp.json();
         if (dataResp.token) {
-            Cookies.set('token', dataResp.token);
+            // Cookies.set('token', dataResp.token);
             yield put(UserActionList.loginSuccess(dataResp));
         }
         yield put(SystemActionList.finishLoading());
@@ -63,7 +61,7 @@ export function* emailCheckRequest(data) {
                 headers: new Headers({
                     'content-type': 'application/json',
                 }),
-            }
+            },
         );
 
         yield put(UserActionList.emailRecord(email));
@@ -98,6 +96,6 @@ export function* registerRequest(data) {
 }
 
 export function* logoutRequest() {
-    yield Cookies.remove('token');
+    // yield Cookies.remove('token');
     Router.push('/login');
 }

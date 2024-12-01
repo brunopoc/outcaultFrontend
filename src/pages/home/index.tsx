@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import { LoggedHeaderComponent } from '../../components';
-import { ActionsList } from '../../store/ducks/user';
+import { ActionsList } from '@store/ducks/user';
 
 export default function Home(): JSX.Element {
     const [email, setEmail] = useState('');

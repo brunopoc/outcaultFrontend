@@ -1,4 +1,4 @@
-import React, { ReactChild, ReactChildren } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Footer = styled.footer`
@@ -14,7 +14,7 @@ const Footer = styled.footer`
 `;
 
 type Props = {
-    children: ReactChild | ReactChildren;
+    children: ReactNode;
 };
 
 export default function FooterComponent({ children }: Props): JSX.Element {

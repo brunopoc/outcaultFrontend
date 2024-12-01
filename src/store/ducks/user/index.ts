@@ -83,7 +83,10 @@ const INITIAL_STATE: UserState = {
     },
 };
 
-const reducer: Reducer<UserState> = (state = INITIAL_STATE, reduceAction) => {
+const reducer: Reducer<any> = (
+    state = INITIAL_STATE,
+    reduceAction: { payload: any; type: actionUserTypes },
+) => {
     switch (reduceAction.type) {
         case actionUserTypes.EMAIL_RECORD:
             return {

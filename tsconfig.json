@@ -16,7 +16,22 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "paths": {
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ]
+    },
+    "incremental": true,
+    "types": [
+      "@types/styled-components"
+    ]
   },
   "include": [
     "next-env.d.ts",

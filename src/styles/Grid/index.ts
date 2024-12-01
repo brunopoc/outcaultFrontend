@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-type grid = {
-    desktop: string;
-    tablet: string;
-    mobile: string;
-};
-
 function getWidthGrid(value) {
     if (!value) return '';
 
@@ -47,7 +41,11 @@ export const Row = styled.div`
     }
 `;
 
-export const Column = styled.div`
+export const Column = styled.div<{
+    desktop: string;
+    tablet: string;
+    mobile: string;
+}>`
     float: left;
     padding: 0.25rem;
     min-height: 1px;
@@ -55,14 +53,14 @@ export const Column = styled.div`
     width: 100%;
 
     @media only screen and (max-width: 768px) {
-        ${({ mobile }: grid) => mobile && getWidthGrid(mobile)};
+        ${props => props.mobile && getWidthGrid(props.mobile)};
     }
 
     @media only screen and (min-width: 768px) {
-        ${({ tablet }: grid) => tablet && getWidthGrid(tablet)};
+        ${props => props.tablet && getWidthGrid(props.tablet)};
     }
 
     @media only screen and (min-width: 1024px) {
-        ${({ desktop }: grid) => desktop && getWidthGrid(desktop)};
+        ${props => props.desktop && getWidthGrid(props.desktop)};
     }
 `;

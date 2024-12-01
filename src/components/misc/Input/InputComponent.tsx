@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import debounce from '../../../utils/debounce';
 
 const InputBar = styled.input`
     background-color: ${props => props.theme.colors.background.primary};

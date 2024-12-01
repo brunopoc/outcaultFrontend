@@ -3,11 +3,10 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ActionsList } from '../../store/ducks/user';
-import { ApplicationState } from '../../store';
-import { onlyNotAuth } from '../../utils/auth';
+import { ActionsList } from '@store/ducks/user';
+import { ApplicationState } from '@store/index';
 
-import { Container, Row } from '../../styles/Grid';
+import { Container, Row } from '@styles/Grid';
 import {
     CardComponent,
     DefaultButtonComponent,
@@ -44,8 +43,6 @@ const LinkContainer = styled.a`
 `;
 
 export default function Login(): JSX.Element {
-    onlyNotAuth();
-
     const userEmail =
         useSelector((state: ApplicationState) => state.user.info.email) || '';
 
@@ -60,7 +57,7 @@ export default function Login(): JSX.Element {
             ActionsList.loginRequest({
                 email: emailBox.value,
                 password: passwordBox.value,
-            })
+            }),
         );
     }
 
