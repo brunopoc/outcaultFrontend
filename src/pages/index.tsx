@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { ApplicationState } from '@store/index';
 
 import { Box, Button, FormControl, FormLabel, TextField } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 
 import { HeaderComponent, DefaultLoadingComponent } from '../components';
 
@@ -11,15 +10,6 @@ export default function Home(): JSX.Element {
     const isLoading = useSelector(
         (state: ApplicationState) => state?.system?.loading,
     );
-
-    // const { mode, setMode } = useColorScheme();
-
-    // setMode('dark');
-
-    const theme = useTheme();
-
-    console.log(theme);
-    // console.log(mode);
 
     return (
         <Box sx={{ backgroundColor: 'background.default' }}>
