@@ -1,9 +1,8 @@
 import React from 'react';
 import App from 'next/app';
-import { ThemeProvider } from '@mui/styles';
-import theme from '@styles/theme';
-import CssBaseline from '@mui/material/CssBaseline';
 import wrapper from '@store/index';
+import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
+import RootLayout from '../templates/RootLayout';
 
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
@@ -19,10 +18,11 @@ class MyApp extends App {
     render() {
         const { Component, pageProps } = this.props;
         return (
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Component {...pageProps} />
-            </ThemeProvider>
+            <AppCacheProvider {...this.props}>
+                <RootLayout>
+                    <Component {...pageProps} />
+                </RootLayout>
+            </AppCacheProvider>
         );
     }
 }

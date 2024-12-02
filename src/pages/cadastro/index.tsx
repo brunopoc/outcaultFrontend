@@ -24,7 +24,7 @@ const FormArea = styled.div`
 
 export default function cadastro(): JSX.Element {
     const globalEmail = useSelector(
-        (state: ApplicationState) => state.auth.info.email,
+        (state: ApplicationState) => state?.auth?.info?.email,
     );
 
     const [emailField, setEmailField] = useState(globalEmail);

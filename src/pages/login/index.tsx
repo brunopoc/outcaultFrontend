@@ -9,11 +9,7 @@ import { ApplicationState } from '@store/index';
 import { TextField } from '@mui/material';
 
 import { Container, Row } from '@styles/Grid';
-import {
-    CardComponent,
-    DefaultButtonComponent,
-    HeaderComponent,
-} from '../../components';
+import { CardComponent, HeaderComponent } from '../../components';
 
 const FormArea = styled.div`
     display: flex;
@@ -28,13 +24,9 @@ const MainArea = styled.div`
     margin: 100px 0px 200px 0px;
 `;
 
-const ButtonContainer = styled.div`
-    margin: 24px 0px;
-`;
-
 const LinkContainer = styled.a`
     margin: 24px 0px;
-    color: ${props => props.theme.colors.link};
+    color: #fff;
     transition: all, 0.2s;
     &:hover {
         cursor: pointer;
@@ -44,7 +36,7 @@ const LinkContainer = styled.a`
 
 export default function Login(): JSX.Element {
     const userEmail =
-        useSelector((state: ApplicationState) => state.auth.info.email) || '';
+        useSelector((state: ApplicationState) => state.auth?.info?.email) || '';
 
     const [email, setEmail] = useState(userEmail);
 
@@ -95,11 +87,6 @@ export default function Login(): JSX.Element {
                                                 id="password-box"
                                                 label="Senha"
                                             />
-                                            <ButtonContainer>
-                                                <DefaultButtonComponent type="submit">
-                                                    entrar
-                                                </DefaultButtonComponent>
-                                            </ButtonContainer>
                                         </FormArea>
                                     </form>
                                     <LinkContainer>
